@@ -1,0 +1,110 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from util.dbClickhouse_util import ClickHouseDb
+from util.dbPlsql_util_system import PlSqlDb as PlSqlDb2
+from util.dbPlsql_util_bi import PlSqlDbBI
+import random
+from datetime import datetime,timedelta
+from update_source.get_data import GetData
+
+mysql1 = PlSqlDbBI()
+sql_1 = '''select max(visit_id) from source.discharge_record;'''
+res_1 = mysql1.query(sql_1)
+
+max_visit_id = res_1[0][0] + 1
+
+mysql = PlSqlDb2()
+
+sql_2 = '''select dept_id,dept_name,normalized_dept_name,normalized_dept_id,source_app
+from system.normalized_department;
+'''
+
+res_2 = mysql.query(sql_2)
+# dept_id = res_2[3][0]
+# dept_name = res_2[3][1]
+# normalized_dept_name = res_2[3][2]
+# normalized_dept_id  = res_2[3][3]
+# source_app = res_2[3][4]
+print(len(res_2))
+print(res_2)
+
+for i in range(1, 1209):
+    max_visit_id = max_visit_id + 1
+    res_2 = mysql.query(sql_2)
+    dept_id = res_2[i][0]
+    dept_name = res_2[i][1]
+    source_app = res_2[i][4]
+
+    pay_cost = random.randint(1300000, 6030000)
+    patient_type_id = random.choice([1, 2, 3, 4, 5, 6, 7, 8])
+    in_days = random.choice([3.0000, 5.0000, 7.0000, 10.0000, 11.0000, 15.0000])
+    pay_kind_code = random.choice([1, 2, 3, 4, 5, 6, 7, 8])
+
+    visit_type_data = {'I': '住院', 'O': '门诊', 'E': '体检', 'P': '急诊'}
+    visit_type_code = random.choice(['I', 'O', 'E', 'P'])
+    visit_type = visit_type_data[visit_type_code]
+
+    sur_name = random.choice(getattr(GetData, 'sur_name'))
+    s_name = random.choice(getattr(GetData, 'name'))
+    patient_name = sur_name + s_name
+
+    doc_id = random.choice(GetData.doc_id)
+    doc_data = GetData.doc_data
+    doc_name=doc_data[doc_id]
+
+    # adjust_sub_class_code = random.choice(['135152', '135148', '135149', '135169', '135147', '135168'])
+    # adjust_sub_class_code = '135160'
+
+    # 指定日期 转换
+    # get_time = '2021-08-10 00:00:00.000000'
+    # now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
+
+    # 时间统一用
+    now_time = datetime.now()
+    # 根据当前时间 去计算便宜时间，随机生成时间
+    # hours_data = random.randint(-10,14)
+    hours_data = round(random.uniform(-10, 14), 2)
+    offset = timedelta(hours=hours_data)
+    real_time = now_time + offset
+
+    update_time = real_time
+
+    sql_3 = '''
+   insert into source.discharge_record (visit_id, org_code, source_app, source_visit_id, source_patient_id, patient_name,
+                                      visit_type, in_time, in_dept_id, in_dept_name, in_ward_id, in_ward_name,
+                                      bed_doc_id, bed_doc_name, out_time, out_dept_id, out_dept_name, out_ward_id,
+                                      out_ward_name, out_bed_id, out_bed_name, patient_type_id, patient_type_name,
+                                      pay_kind_id, pay_kind_name, in_num, in_days, in_total_cost, drug_cost, drug_kinds,
+                                      antibac_kinds, antibac_flag, antibac_cost, ddd_value, spe_ddd_value,
+                                      basic_drug_flag, spe_antibac_flag, injection_flag, inject_usage_flag,
+                                      injection_cost, infusion_flag, oral_drug_flag, oral_drug_cost, i_incision_flag,
+                                      preoper_antibio_flag, preoper_2h_antibio_flag, postoper_antibio_flag,
+                                      preven_antibio_flag, treat_antibio_flag, eti_flag, treat_eti_flag,
+                                      treat_res_antibac_eti_flag, treat_spe_antibac_eti_flag, treat_res_antibac_flag,
+                                      treat_spe_antibac_flag, antibac_union_flag, material_cost, check_cost, lab_cost,
+                                      treat_cost, major_diag, critical_flag, serious_flag, is_rescue, outcome_id,
+                                      outcome_name, preoper_days, inten_presons, inten_days, create_id, create_name,
+                                      create_time, in_dept_group_id, in_dept_group_name, out_dept_group_id,
+                                      out_dept_group_name, country, province, city, district, disease_name, disease_id,
+                                      visit_type_id, visit_type_code, in_dept_code, out_dept_code, patient_type_code,
+                                      pay_kind_code, in_diag_id, in_diag_code, in_diag_name, out_diag_id, out_diag_code,
+                                      out_diag_name, major_diag_id, major_diag_code, outcome_code, settle_time,
+                                      medical_group_code, medical_group_name, presc_com_flag, oper_flag_code, pub_cost,
+                                      own_cost, pay_cost, oper_flag_name, patient_id, normalized_in_dept_id,
+                                      normalized_in_dept_name, normalized_out_dept_id, normalized_out_dept_name, str1,
+                                      str2, str3, str4, str5, str6, str7, str8, str9, str10, dept_type_code,
+                                      dept_type_name)
+values ({0}, '46919134-2', '{1}', 10159817, 3577370, '{11}', '{10}', '{9}', null, '胃肠外科住院', 86, '观察病房',
+        {12}, '{13}', '{9}', {2}, '{3}', 22, '观察病房', 393, 811421, {6}, '深圳医保7157', 49509, null, 1, {8},
+        7084.1600, 619.1000, 1, 1, 1, 28.2200, null, null, 0, null, 1, 1, 65.6400, 0, 1, 0.5700, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, 557.3600, 421.0000, 1284.0000, 61.2000, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null, '中国', '广东省', '深圳市', null, null,
+        null, null, '{7}', 1050, 1050, 5, {5}, null, null, '慢性阑尾炎', null, null, null, null, null, null,
+        '{9}', null, null, null, null, 0.0000, 7084.1600, {4}, null, 903879, null, null, null, null,
+        'AK3022915', null, null, null, null, null, null, null, null, null, 0, '类型1');
+
+        '''.format(max_visit_id, source_app, dept_id, dept_name, pay_cost, pay_kind_code, patient_type_id,
+                   visit_type_code, in_days, update_time,visit_type,patient_name,doc_id,doc_name)
+    mysql1.insert(sql_3)
+    print(i)

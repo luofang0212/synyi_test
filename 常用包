@@ -1,0 +1,9 @@
+
+import random  #随机数
+import os   #路径和文件处理
+import requests   #处理请求
+import openpyxl   #处理.xlsx 结尾的excel
+from clickhouse_driver import Client    #clickhouse数据库
+import psycopg2   #pl数据库
+import pymysql  #mysql数据库
+from ddt import ddt, data, unpack, file_data  #ddt 数据驱动管理 一般结合unittest使用

@@ -1,0 +1,101 @@
+{
+	"portlet_01": {
+		"tabs": null,
+		"title": "门急诊情况",
+		"kpiCodes": ["020014", "020006", "130014", "130015"],
+		"portletId": 0,
+		"conditions": [{
+			"key": "kpiCodes",
+			"value": ["020008"]
+		}],
+		"context_menus": null
+	},
+	"portlet_02": {
+		"tabs": null,
+		"title": "住院情况",
+		"kpiCodes": ["050002", "230001"],
+		"portletId": 1,
+		"conditions": [{
+			"key": "kpiCodes",
+			"value": ["900115"]
+		}],
+		"context_menus": null
+	},
+	"portlet_03": {
+		"tabs": null,
+		"title": "",
+		"children": [{
+			"portlet_01": {
+				"title": "检验情况",
+				"kpiCodes": ["130007", "130004", "130003"],
+				"portletId": 3,
+				"conditions": [{
+					"key": "kpiCodes",
+					"value": ["130005"]
+				}]
+			},
+			"portlet_02": {
+				"title": "检查情况",
+				"kpiCodes": ["130012", "130009"],
+				"portletId": 4,
+				"conditions": [{
+					"key": "kpiCodes",
+					"value": ["130010", "130008"]
+				}]
+			}
+		}],
+		"portletId": 2,
+		"conditions": [],
+		"context_menus": null
+	},
+	"portlet_04": {
+		"tabs": null,
+		"title": "门急诊各环节人员分布",
+		"children": null,
+		"portletId": 5,
+		"conditions": [{
+			"key": "kpiCodes",
+			"value": ["130013", "130001", "130002"]
+		}],
+		"context_menus": null
+	},
+	"portlet_05": {
+		"tabs": null,
+		"title": "住院床位近两周情况",
+		"portletId": 6,
+		"conditions": [{
+			"key": "kpiCodes",
+			"value": ["060018", "050002", "060001", "060020"]
+		}],
+		"context_menus": null
+	},
+	"portlet_06": {
+		"tabs": null,
+		"title": "手术情况",
+		"children": [{
+			"portlet_02": {
+				"title": null,
+				"portletId": 9,
+				"conditions": [{
+					"key": "groupBy",
+					"value": "operation_class_name"
+				}, {
+					"key": "kpiCodes",
+					"value": ["080059"]
+				}]
+			},
+			"portlet_03": {
+				"title": null,
+				"kpiCodes": ["080061", "080060"],
+				"portletId": 10,
+				"conditions": [{
+					"key": "kpiCodes",
+					"value": ["080061"]
+				}]
+			}
+		}],
+		"isHidden": false,
+		"portletId": 7,
+		"context_menus": null
+	}
+}

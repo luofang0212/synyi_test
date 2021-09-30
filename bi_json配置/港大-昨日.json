@@ -1,0 +1,229 @@
+{
+  "portlet_01": {
+    "title": "新冠肺炎",
+    "children": [
+      {
+        "portlet_02": {
+          "title": "核酸检测",
+          "portletId": 2,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "900104"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "portlet_03": {
+          "portletId": 3,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "900104"
+              ]
+            },
+            {
+              "key": "groupBy",
+              "value": "sample_source"
+            }
+          ]
+        }
+      },
+      {
+        "portlet_11": {
+          "title": "阳性",
+          "portletId": 11,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "900107"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "portlet_12": {
+          "title": "发热门诊",
+          "portletId": 12,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "900110",
+                "900111",
+                "020001"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "portlet_04": {
+    "title": "港大医院智慧运营管理平台",
+    "children": [
+      {
+        "portlet_13": {
+          "portletId": 13,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "010112",
+                "020001"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "portlet_14": {
+          "portletId": 14,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "900123",
+                "900124",
+                "900125"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "portletId": 4,
+    "conditions": [
+      {
+        "key": "kpiCodes",
+        "value": [
+          "900113"
+        ]
+      }
+    ]
+  },
+  "portlet_06": {
+    "title": "预约分析",
+    "timeSpan": "7",
+    "portletId": 6,
+    "conditions": [
+      {
+        "key": "kpiCodes",
+        "value": [
+          "010013",
+          "010006"
+        ]
+      }
+    ],
+    "barPortletId": 5
+  },
+  "portlet_07": {
+    "title": "工作负荷",
+    "timeSpan": "7",
+    "portletId": 7,
+    "conditions": [
+      {
+        "key": "kpiCodes",
+        "value": [
+          "020001",
+          "900009"
+        ]
+      }
+    ],
+    "barPortletId": 5
+  },
+  "portlet_08": {
+    "title": "住院",
+    "portletId": 8,
+    "conditions": [
+      {
+        "key": "kpiCodes",
+        "value": [
+          "900115",
+          "050002",
+          "060006",
+          "060004"
+        ]
+      }
+    ]
+  },
+  "portlet_09": {
+    "title": "手术",
+    "children": [
+      {
+        "portlet_10": {
+          "portletId": 10,
+          "conditions": [
+            {
+              "key": "kpiCodes",
+              "value": [
+                "080003"
+              ]
+            },
+            {
+              "key": "groupBy",
+              "value": "operation_level"
+            }
+          ]
+        }
+      }
+    ],
+    "portletId": 9,
+    "conditions": [
+      {
+        "key": "kpiCodes",
+        "value": [
+          "080003"
+        ]
+      }
+    ]
+  },
+  "portlet_21": {
+    "title": "初复诊",
+    "timeSpan": "7",
+    "portletId": 11,
+    "conditions": [
+      {
+        "key": "kpiCodes",
+        "value": [
+          "060006",
+          "060007"
+        ]
+      }
+    ],
+    "barPortletId": 5
+  },
+  "linkKpiCodes": [
+    "900104",
+    "900107",
+    "900110",
+    "900111",
+    "020001",
+    "010112",
+    "020001",
+    "900123",
+    "900124",
+    "900125",
+    "900113",
+    "010013",
+    "010006",
+    "020001",
+    "900009",
+    "900115",
+    "050002",
+    "060006",
+    "060004",
+    "080003",
+    "060006",
+    "060007",
+    "900123",
+    "900124",
+    "900125"
+  ]
+}

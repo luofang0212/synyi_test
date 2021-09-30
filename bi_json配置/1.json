@@ -1,0 +1,215 @@
+{
+  "Titles": [
+    "安全例数",
+    "发生率"
+  ],
+  "Indicators": [
+    {
+      "Name": "手术患者手术后肺栓塞",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "b8481e9f",
+          "IndicatorId":"b8481e9f-c9f7-4ac1-9c99-7d64ed502d05"
+        },
+        {
+          "IndicatorCode": "71aebf24",
+          "IndicatorId":"71aebf24-0d19-4486-8c98-4c8d4e2c5f30"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术后深静脉血栓",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "f750a22a",
+          "IndicatorId":"f750a22a-d2ce-4266-8b10-3d5ecd5c3a17"
+        },
+        {
+          "IndicatorCode": "85d9bc7f",
+          "IndicatorId":"85d9bc7f-afd0-40bc-9a05-7a8391191562"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术后败血症",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "25baf316",
+          "IndicatorId":"25baf316-a4a1-47e7-abcd-c00245187c7e"
+        },
+        {
+          "IndicatorCode": "85d9bc7f",
+          "IndicatorId":"85d9bc7f-afd0-40bc-9a05-7a8391191562"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术后出血或血肿",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "f750a22a",
+          "IndicatorId":"f750a22a-d2ce-4266-8b10-3d5ecd5c3a17"
+        },
+        {
+          "IndicatorCode": "07ea081c",
+          "IndicatorId":"07ea081c-7666-41db-a6a8-6773d8870262"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术伤口裂开",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "65c8b7c7",
+          "IndicatorId":"65c8b7c7-5603-4fa9-a698-807083dac2fc"
+        },
+        {
+          "IndicatorCode": "538c01da",
+          "IndicatorId":"538c01da-898c-44fc-888c-fc570455cb79"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术后猝死",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "6f77d1f9",
+          "IndicatorId":"6f77d1f9-cc7d-4b58-8409-ff522388ab99"
+        },
+        {
+          "IndicatorCode": "98f4fd0b",
+          "IndicatorId":"98f4fd0b-5d63-4c10-8f87-d5acf632f3bb"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术后呼吸衰竭",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "83f63a01",
+          "IndicatorId":"83f63a01-4b04-41ef-bbb3-a7d02fa37869"
+        },
+        {
+          "IndicatorCode": "31204b15",
+          "IndicatorId":"31204b15-eb6e-4f2b-a065-371905fcb956"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者手术后生理/代谢紊乱",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "83f63a01",
+          "IndicatorId":"83f63a01-4b04-41ef-bbb3-a7d02fa37869"
+
+        },
+        {
+          "IndicatorCode": "85d9bc7f",
+          "IndicatorId":"85d9bc7f-afd0-40bc-9a05-7a8391191562"
+        }
+      ]
+    },
+    {
+      "Name": "手术过程中异物遗留",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "f2be8c35",
+          "IndicatorId":"f2be8c35-1e06-47c4-a3cd-fdff2fcefaf1"
+        },
+        {
+          "IndicatorCode": "b4dcdc5f",
+          "IndicatorId":"b4dcdc5f-cec6-44a0-836e-7dad3d606662"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者麻醉并发症",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "dc303976",
+          "IndicatorId":"dc303976-b2ec-409b-b8a0-3dcd205c27df"
+        },
+        {
+          "IndicatorCode": "82cc6240",
+          "IndicatorId":"82cc6240-e863-4955-861f-1bf720d2431d"
+        }
+      ]
+    },
+    {
+      "Name": "手术患者肺部感染与肺机能不全",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "5fd8ee24",
+          "IndicatorId":"5fd8ee24-348c-410c-bbec-1dc351098067"
+        },
+        {
+          "IndicatorCode": "23667dcb",
+          "IndicatorId":"23667dcb-327e-43c2-867b-120fbfdf30f1"
+        }
+      ]
+    },
+    {
+      "Name": "手术意外穿刺伤或撕裂伤",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "380b31dd",
+          "IndicatorId":"380b31dd-806f-4c89-be46-74ff11e2edc6"
+        },
+        {
+          "IndicatorCode": "bac166d3",
+          "IndicatorId":"bac166d3-a580-44a7-99bb-dd4abad0cd45"
+        }
+      ]
+    },
+    {
+      "Name": "再植和截肢的并发症",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "4840d55d",
+          "IndicatorId":"4840d55d-6603-4352-bad8-32d71f471df5"
+        },
+        {
+          "IndicatorCode": "8b6ee4af",
+          "IndicatorId":"8b6ee4af-49f8-43fe-a530-01acfffa28be"
+        }
+      ]
+    },
+    {
+      "Name": "介入操作与手术后患者其他并发症",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "6fda811f",
+          "IndicatorId":"6fda811f-2418-42c7-94ff-ea3b12e36fd2"
+        },
+        {
+          "IndicatorCode": "d5dd34ac",
+          "IndicatorId":"d5dd34ac-a7bc-4c4f-96df-bffc8d5a3418"
+        }
+      ]
+    },
+    {
+      "Name": "阴道分娩产妇产程和分娩并发症",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "80a1e627"
+        },
+        {
+          "IndicatorCode": "776372f5"
+        }
+      ]
+    },
+    {
+      "Name": "剖宫产分娩产妇产程和分娩并发症",
+      "ChildIndicators": [
+        {
+          "IndicatorCode": "05a011f5",
+          "IndicatorId":"05a011f5-452f-4d2e-8950-2af01d1d04db"
+        },
+        {
+          "IndicatorCode": "6b801f04",
+          "IndicatorId":"6b801f04-1049-4de1-a43e-db4843173810"
+        }
+      ]
+    }
+  ]
+}

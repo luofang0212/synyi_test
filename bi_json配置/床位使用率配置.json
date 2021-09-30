@@ -1,0 +1,166 @@
+[
+  {
+    "sortNo": "1",
+    "groupkey": "bed_use_lv_hospitalized_card",
+    "kpiCodes": [
+      "200006"
+    ],
+    "showName": "实时",
+    "dimensionType": "kpi"
+  },
+  {
+    "sortNo": "2",
+    "groupkey": "bed_use_lv_outpatient_eunm",
+    "kpiCodes": [
+      "200007"
+    ],
+    "allEnumName": "全部床位",
+    "groupByCode": "bed_level_code",
+    "groupByName": "bed_level_name",
+    "isDefaultOrder": "false"
+  },
+  {
+    "sortNo": "3",
+    "groupkey": "bed_use_lv_hospitalized_circle",
+    "kpiCodes": [
+      "200005",
+      "200004",
+      "200009",
+      "200010"
+    ],
+    "groupType": "DimensionForm",
+    "RealopTimeType": "Normal",
+    "isDefaultOrder": "false",
+    "dimensionConfig": [
+      {
+        "color": "#FFC900",
+        "isshow": "true",
+        "kpiCode": "200005",
+        "filterColumn": "bed_type_name",
+        "filterValues": [
+          "在编",
+          "非编",
+          "加床"
+        ],
+        "groupByColumn": "bed_type_code"
+      },
+      {
+        "color": "#FFC900",
+        "isshow": "true",
+        "kpiCode": "200010",
+        "filterColumn": "bed_type_name",
+        "groupByColumn": "bed_type_code",
+        "calculateModel": {
+          "constant": "100"
+        }
+      },
+      {
+        "color": "#06A2FF",
+        "isshow": "true",
+        "kpiCode": "200009",
+        "filterColumn": "bed_type_name",
+        "filterValues": [
+          "在编"
+        ],
+        "groupByColumn": "bed_type_code",
+        "calculateModel": {
+          "constant": "1500",
+          "operatorCode": "-",
+          "relationKpiCode": "200005"
+        }
+      },
+      {
+        "color": "#FFFFFF",
+        "isshow": "true",
+        "kpiCode": "200004",
+        "filterColumn": "bed_type_name",
+        "groupByColumn": "bed_type_code",
+        "calculateModel": {
+          "constant": "1500",
+          "operatorCode": null,
+          "relationKpiCode": null
+        }
+      }
+    ]
+  },
+  {
+    "isHide": "true",
+    "sortNo": "4",
+    "groupkey": "bed_use_lv_hospitalized_polyline",
+    "kpiCodes": [
+      "200004"
+    ],
+    "groupType": "time"
+  },
+  {
+    "tabs": [
+      {
+        "cards": [
+          {
+            "name": "开放床位",
+            "value": "200004"
+          },
+          {
+            "name": "占用床位",
+            "value": "200005"
+          },
+          {
+            "name": "空余床位",
+            "value": "200009"
+          }
+        ],
+        "title": "病区",
+        "tabKey": "dept",
+        "orderSort": "asc",
+        "sortValue": "bed_room_code",
+        "groupByCode": "bed_ward_code",
+        "groupByName": "bed_ward_name",
+        "groupByFilter": "bed_ward_code is not null"
+      }
+    ],
+    "sortNo": "5",
+    "groupkey": "bed_use_lv_hospitalized_rank",
+    "kpiCodes": [
+      "200004"
+    ],
+    "orderSort": "desc",
+    "RealopTimeType": "Normal",
+    "isDefaultOrder": "false"
+  },
+  {
+    "sortNo": "6",
+    "groupkey": "bed_use_lv_hospitalized_trend",
+    "GraphType": "DimensionForm",
+    "RealopTimeType": "Normal",
+    "isDefaultOrder": "false",
+    "dimensionConfig": [
+      {
+        "isshow": "true",
+        "kpiCode": "200005",
+        "filterColumn": "bed_type_name",
+        "filterValues": [
+          "在编",
+          "非编",
+          "加床"
+        ],
+        "groupByColumn": "bed_type_code"
+      },
+      {
+        "isshow": "true",
+        "kpiCode": "200009",
+        "filterColumn": "bed_type_name",
+        "filterValues": [
+          "在编",
+          "非编"
+        ],
+        "groupByColumn": "bed_type_code"
+      },
+      {
+        "isshow": "true",
+        "kpiCode": "200004",
+        "filterColumn": "bed_type_name",
+        "groupByColumn": "bed_type_code"
+      }
+    ]
+  }
+]

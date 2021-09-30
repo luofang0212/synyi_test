@@ -1,0 +1,28 @@
+[
+  {
+    "code": "sex",
+    "value": {
+      "code": "1",
+      "display": "男性"
+    }
+  },
+  {
+    "code": "hospitalArea",
+    "value": {
+      "code": "999001",
+      "display": "森亿总部"
+    }
+  },
+  {
+    "code": "isActive",
+    "value": true
+  },
+  {
+    "code": "employeeNo",
+    "value": 20001.0
+  },
+  {
+    "code": "multiDepartment",
+    "value": "[{\"data\":[{\"codeSystemCode\":\"department\",\"code\":\"04\",\"display\":\"儿骨科\"},{\"codeSystemCode\":\"administrative-post\",\"code\":\"1.1\",\"display\":\"党委书记\"},{\"codeSystemCode\":\"position-sequence\",\"code\":\"1\",\"display\":\"高级管理系列\"},{\"codeSystemCode\":\"medical-group\",\"code\":\"1\",\"display\":\"测试医疗组1\"},{\"codeSystemCode\":\"location\",\"code\":\"012\",\"display\":\"012\"}],\"isDefault\":true}]"
+  }
+]
