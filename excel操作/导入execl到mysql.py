@@ -7,9 +7,10 @@ from excel操作.dbMyql_util import MysqlDb
 # 操作excel
 class DoExcel:
 
-    def __init__(self, file_name, sheet_name):
+    def __init__(self, file_name, sheet_name,table_name):
         self.file_name = file_name
         self.sheet_name = sheet_name
+        self.table_name = table_name
         self.mysql = MysqlDb()
 
     def get_data(self):
@@ -21,8 +22,8 @@ class DoExcel:
             print("excel文件或sheet不存在：{0}".format(e))
             raise e
 
-        table_name = "table_4"
-        self.create_table(table_name)
+
+        self.create_table(self.table_name)
         # 存储从 excel里面读取的数据
         test_data = []
         for i in range(1,sheet.max_row+1):
@@ -43,8 +44,12 @@ class DoExcel:
 
             test_data.append(get_test_data)
 
+            # 插入数据前，先清空表数据
+            del_sql = '''delete from excel_data.{0} where 1=1;'''.format(table_name)
+            self.mysql.execut(del_sql)
+
             insert_sql = '''INSERT INTO excel_data.{0} (col_1, col_2,col_3, col_4,col_5, col_6,col_7, col_8,col_9, col_10,col_11,col_12) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}');
-            '''.format(table_name,col_1, col_2,col_3, col_4,col_5, col_6,col_7, col_8,col_9, col_10,col_11,col_12)
+            '''.format(self.table_name,col_1, col_2,col_3, col_4,col_5, col_6,col_7, col_8,col_9, col_10,col_11,col_12)
             self.mysql.execut(insert_sql)
             print("第{0}条，插入成功".format(i))
 
@@ -61,7 +66,7 @@ class DoExcel:
         sheet.cell(row, 9).value = testResult
         wb.save(file_name)
 
-    def create_table(self,table_name):
+    def create_table(self):
 
         creat_sql='''create table if not exists {0}
             (
@@ -78,14 +83,14 @@ class DoExcel:
                 col_11 varchar(1000) null,
                 col_12 varchar(1000) null
             );
-    ''' .format(table_name)
-        print(table_name)
+    ''' .format(self.table_name)
         self.mysql.execut(creat_sql)
         # sql_res = self.mysql.query('select * from table_1;')
-        print(table_name,"表创建成功")
+        print(self.table_name,"表创建成功")
 
 if __name__ == '__main__':
 
-    do_excel = DoExcel(r'D:\python_work\synyi_test\test_sim_zhengce\需要导入的政策指标集.xlsx', 'Sheet1')
+    # 需要传：excel的具体地址、需要导入excel的sheet页名称、表名称
+    do_excel = DoExcel(r'D:\测试数据\mdm_mdm_Sheet1.xlsx', 'result 1', 'table_4')
     do_excel.get_data()
     # print(res)
