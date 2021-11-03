@@ -5,8 +5,9 @@ from util.dbClickhouse_util import ClickHouseDb
 from util.dbPlsql_util_system import PlSqlDb
 from util.dbPlsql_util_bi import PlSqlDbBI
 import random
-import time, datetime
-from update_source.get_data import GetData
+import time
+from bi_source.get_data import GetData
+from datetime import datetime, timedelta
 
 # 挂号主题 topic=1
 mysql1 = PlSqlDbBI()
@@ -23,20 +24,17 @@ from system.normalized_department;
 '''
 
 res_2 = mysql.query(sql_2)
-# dept_id = res_2[3][0]
-# dept_name = res_2[3][1]
-# normalized_dept_name = res_2[3][2]
-# normalized_dept_id  = res_2[3][3]
-# source_app = res_2[3][4]
+
 print(len(res_2))
 print(res_2)
 
-for i in range(1, 1210):
+for i in range(1, 1209):
     max_visit_id = max_visit_id + 1
     res_2 = mysql.query(sql_2)
     dept_id = res_2[i][0]
     dept_name = res_2[i][1]
     source_app = res_2[i][4]
+
     total_cost = random.randint(200000, 730000)
     patient_type_id = random.choice([1, 2, 3, 4, 5, 6, 7, 8])
     pay_kind_code = random.choice([1, 2, 3, 4, 5, 6, 7, 8])
@@ -48,65 +46,67 @@ for i in range(1, 1210):
     else:
         clinic_level_name = "西医普诊"
 
-    major_diag_name = random.choice(["健康查体","疑似新冠"])
+    major_diag_name = random.choice(["健康查体", "疑似新冠"])
 
     doc_id = random.choice(GetData.doc_id)
     doc_data = GetData.doc_data
     doc_name = doc_data[doc_id]
 
-    # now_time = datetime.datetime.now()
-    data = random.randint(15, 16)
-    now_time = '2021-08-' + str(data)
-    # now_time = '2021-' + str(data) + '-02'
-    # now_time = datetime.datetime.now().strftime('%Y-%m-%d')
-    data_hourse = random.randint(0, 24)
-    if 0 <= data_hourse <= 9:
-        update_time = str(now_time) + ' 0' + str(data_hourse) + ':00:00.000000'
-    elif 9 < data_hourse <= 24:
-        update_time = str(now_time) + ' ' + str(data_hourse) + ':00:00.000000'
-
-    settle_data = random.randint(15, 16)
-    settle_time = '2021-08-' + str(data)
-    # settle_time = '2021-' + str(data) + '-02'
-    # now_time = datetime.datetime.now().strftime('%Y-%m-%d')
-    settle_hourse = random.randint(0, 24)
-    if 0 <= settle_hourse <= 9:
-        settle_time = str(settle_time) + ' 0' + str(settle_hourse) + ':00:00.000000'
-    elif 9 < settle_hourse <= 24:
-        settle_time = str(settle_time) + ' ' + str(settle_hourse) + ':00:00.000000'
-
-
     age_group_code = random.choice(['18-41', '0-7', '>65', '41-65', '7-18'])
-    if age_group_code == '0-7':
-        age_group_name = '0岁-7岁'
-    elif age_group_code == '7-18':
-        age_group_name = '7岁-18岁'
-    elif age_group_code == '18-41':
-        age_group_name = '18岁-41岁'
-    elif age_group_code == '41-65':
-        age_group_name = '41岁-65岁'
-    elif age_group_code == '>65':
-        age_group_name = '>65岁'
+    age_group_data = {'0-7': '0岁-7岁', '7-18': '7岁-18岁', '18-41': '18岁-41岁', '41-65': '41岁-65岁', '>65': '>65岁'}
+    age_group_name = age_group_data[age_group_code]
 
+    sur_name = random.choice(getattr(GetData, 'sur_name'))
+    s_name = random.choice(getattr(GetData, 'name'))
+    patient_name = sur_name + s_name
+
+    # 0:未预约 1:预约
+    book_flag = random.choice([0, 1])
+
+    # 0: 未拿号 1: 候诊 2: 就诊 3:就诊完成
+    visit_state_data = {0: ["0", "未拿号"], 1: ["1", "候诊"], 2: ["2", "就诊"], 3: ["3", "就诊完成"]}
+    visit_state_id = random.choice([0, 1, 2, 3])
+    visit_state_code = visit_state_data[visit_state_id][0]
+    visit_state_name = visit_state_data[visit_state_id][1]
+
+    # 诊室
+    visit_room_data = {"1001": "诊室一", "1002": "诊室二", "1003": "诊室三", "1004": "诊室四", "1005": "诊室五", "1006": "诊室六"}
+    visit_room_code = random.choice(["1001", "1002", "1003", "1004", "1005", "1006"])
+    visit_room_name = visit_room_data[visit_room_code]
+
+    # 诊区
+    visit_ward_data = {1: "血液净化中心诊区", 2: "中医内科诊区", 3: "内分泌科诊区", 4: "中医内科诊区", 5: "皮肤科诊区", 6: "急诊外科诊区", 7: "耳鼻喉科诊区",
+                       8: "儿科病区诊区", 9: "产科门诊诊区", 10: "神经外科诊区", 11: "口腔科诊区", 12: "新生儿专科门诊诊区", 13: "感染管理科诊区"}
+    visit_ward_id = random.randint(1, 13)
+    visit_ward_code = str(visit_ward_id)
+    visit_ward_name = visit_ward_data[visit_ward_id]
+
+    book_way_data = {'A': [4894, "窗口挂号"], 'Z': [4895, "自助机"], '1': [49549, "预约挂号"], '0': [49548, "现场挂号"],
+                     'D': [4893, "网上预约"], }
     book_way_code = random.choice(['A', 'Z', '1', '0', 'D'])
-    if book_way_code == 'A':
-        book_way_id = 4894
-        book_way_name = '窗口挂号'
-    elif book_way_code == 'Z':
-        book_way_id = 4895
-        book_way_name = '自助机'
-    elif book_way_code == '1':
-        book_way_id = 49549
-        book_way_name = '预约挂号'
-    elif book_way_code == '0':
-        book_way_id = 49548
-        book_way_name = '现场挂号'
-    elif book_way_code == 'D':
-        book_way_id = 4893
-        book_way_name = '网上预约'
-    patient_name = '刘三' + random.choice(['A', 'Z', 'B', 'E', 'D']) + str(random.randint(1, 100))
+    book_way_id = book_way_data[book_way_code][0]
+    book_way_name = book_way_data[book_way_code][1]
 
-    # now_time = '2021-07-21 09:33:55.000000'
+    # 指定日期 转换
+    data = random.randint(19, 22)
+    get_time = '2021-08-{0} 10:00:00.000000'.format(data)
+    now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
+
+    # now_time = datetime.now()
+    # 根据当前时间 去计算便宜时间，随机生成时间
+    # hours_data = random.randint(-10,14)
+    hours_data = round(random.uniform(-10, 14), 2)
+    offset = timedelta(hours=hours_data)
+    real_time = now_time + offset
+
+    call_time = real_time
+
+    hours_data_2 = round(random.uniform(0, 5), 2)
+    offset_2 = timedelta(hours=hours_data_2)
+    arrive_time = call_time - offset_2
+
+    end_time = call_time + offset_2
+
 
     sql_3 = '''
         insert into source.reg_record (visit_id, org_code, source_app, source_visit_id, source_patient_id, patient_name, sex_id,
@@ -127,17 +127,20 @@ for i in range(1, 1210):
                                medical_group_code, medical_group_name, pub_cost, own_cost, pay_cost, patient_id,
                                normalized_dept_id, normalized_dept_name, major_diag_code, referral_flag, str1, str2,
                                str3, str4, str5, str6, str7, str8, str9, str10, dept_type_code, dept_type_name,
-                               call_time, book_flag)
+                               call_time, book_flag,arrive_time, end_time, visit_ward_code, visit_ward_name,
+                               visit_room_code, visit_room_name)
 values ({0}, '46919134-2', '{1}', '20880|20190618', 03110588, '{14}', 24, '女性', 42, '岁', 15343, {5}, '市医保',
         4603, '医保', '***', '中国', '香港特别行政区', null, null, null, null, {11}, '{12}', null, null, null, '上午',
         '{8}', 4619, '普通号', 4619, '{15}', 0, '门诊', '{17}', 103, '内科门诊', {2}, '{3}', {18}, '{19}',
-        4548, '副主任医师', 5627, '就诊', 1, null, 10.0000, 10.0000, {4}, '{16}', 0, 0, 0, null,
+        4548, '副主任医师', {21}, '{23}', 1, null, 10.0000, 10.0000, {4}, '{16}', 0, 0, 0, null,
         null, null, null, 0.0000, null, null, 2107, '自助001', 221, '门诊收费处', null, 2, 10, {6}, null, '{13}', null, 13, 3, 551,
-        '{7}', null, 0307, 9029, 212, 2, 9121, 01030002, 96217, '{9}', '{10}', null, '门诊医生|0307', '内科门诊', null, null,
+        '{7}', null, 0307, 9029, 212, {22}, 9121, 01030002, 96217, '{9}', '{10}', null, '门诊医生|0307', '内科门诊', null, null,
         10.0000, 300337122, 25, '消化科', null, null, null, null, null, null, null, null, null, null, null, null, 0, '普通',
-        '{8}', null);
+        '{8}', {20}, '{16}', '{26}', '{27}', '{28}', '{24}', '{25}');
         '''.format(max_visit_id, source_app, dept_id, dept_name, total_cost, patient_type_id, pay_kind_code,
-                   visit_type_code, update_time, age_group_code, age_group_name, book_way_id, book_way_name,
-                   book_way_code, patient_name, clinic_level_name,settle_time,major_diag_name,doc_id,doc_name)
+                   visit_type_code, call_time, age_group_code, age_group_name, book_way_id, book_way_name,
+                   book_way_code, patient_name, clinic_level_name, arrive_time, major_diag_name, doc_id, doc_name,
+                   book_flag, visit_state_id, visit_state_code, visit_state_name, visit_room_code, visit_room_name,
+                   end_time, visit_ward_code,visit_ward_name)
     mysql1.insert(sql_3)
     print(i)

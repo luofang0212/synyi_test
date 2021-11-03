@@ -9,12 +9,12 @@ class PlSqlDb:
     def __init__(self):
 
         # 连接数据库
-        # self.conn = psycopg2.connect(database="bi_test", user="luofang", password="p$mKDqBPVc5d", host="172.16.0.20",
-        #                              port="5432")
-
-        # 连接数据库
-        self.conn = psycopg2.connect(database="bi_test", user="postgres", password="postgres", host="172.16.129.172",
+        self.conn = psycopg2.connect(database="bi_test", user="luofang", password="p$mKDqBPVc5d", host="172.16.0.20",
                                      port="5432")
+
+        # # 连接数据库
+        # self.conn = psycopg2.connect(database="bi_test", user="postgres", password="postgres", host="172.16.129.172",
+        #                              port="5432")
 
         # # 连接数据库
         # self.conn = psycopg2.connect(database="bi_3.14.1", user="postgres", password="postgres", host="172.16.129.172",

@@ -9,7 +9,7 @@ import uuid
 
 def get_guid():
 
-    name = 'test_name'
+    name = 'test_name2'
     namespace = uuid.uuid1()
     # print(namespace)
     # print(uuid.uuid3(namespace, name))  # namespace 必须是UUID
@@ -18,4 +18,5 @@ def get_guid():
 
 
 if __name__ == '__main__':
-    get_guid()
+    for x in range(10):
+         get_guid()

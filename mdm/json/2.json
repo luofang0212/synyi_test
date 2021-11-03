@@ -1,24 +1,43 @@
 {
-  "ids": [
+  "rowList": [
     {
-      "code": "1.12",
-      "identifier": "YB10656808245562"
+      "code": "a21-2",
+      "name": "a21-2",
+      "columnList": [
+        {
+          "value": true,
+          "column": "isActive"
+        },
+        {
+          "value": "a21-2/1",
+          "column": "zifula"
+        }
+      ],
+      "columnLists": [],
+      "operateType": 1,
+      "originalCode": "a21-2",
+      "originalName": "a21-2",
+      "originalColumnList": [],
+      "originalColumnLists": []
+    },
+    {
+      "code": "21",
+      "name": "a21",
+      "columnList": [],
+      "columnLists": [],
+      "operateType": 0,
+      "originalCode": "21",
+      "originalName": "a21",
+      "originalColumnList": [
+        {
+          "value": true,
+          "column": "isActive"
+        }
+      ],
+      "originalColumnLists": []
     }
   ],
-  "id_no": "227903197510102356",
-  "phone": null,
-  "pinyin": "shi,hong,chou",
-  "sex_code": null,
-  "birth_date": "19900919",
-  "spell_name": " sihongtao",
-  "nation_name": null,
-  "contact_name": "施鸿畴",
-  "home_address": null,
-  "native_place": null,
-  "patient_name": " 施鸿畴",
-  "source_patid": "1235791",
-  "contact_phone": null,
-  "profession_code": null,
-  "medicare_card_no": "YB66354511235790",
-  "temporary_card_no": "2021"
+  "codeSystemId": "202110090015",
+  "codeSystemName": "202110090015",
+  "codeSystemTitle": "小青青1"
 }

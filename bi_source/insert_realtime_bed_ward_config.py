@@ -4,7 +4,7 @@
 from util.dbPlsql_util_system import PlSqlDb
 import random
 from datetime import datetime, timedelta
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 
 # 移动端 床位使用率-病区
 

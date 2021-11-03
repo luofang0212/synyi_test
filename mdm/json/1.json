@@ -1,24 +1,53 @@
 {
-  "ids": [
+  "total": 2,
+  "approvalNote": "333",
+  "commitNote": "333",
+  "commiter": "testmdmlist",
+  "operator": "testmdmlist",
+  "commitTime": "2021-09-03T09:00:06.299Z",
+  "approvalTime": "2021-09-03T09:00:31.539Z",
+  "concepts": [
     {
-      "code": "1.12",
-      "identifier": "YB66354511235790"
+      "operateType": 2,
+      "code": "11",
+      "display": "测试11->\t测试11",
+      "property": []
+    },
+    {
+      "operateType": 1,
+      "code": "3333",
+      "display": "333",
+      "property": [
+        {
+          "code": "isActive",
+          "value": "禁用"
+        }
+      ]
     }
   ],
-  "id_no": "227903197510102356",
-  "phone": null,
-  "pinyin": "shi,hong,chou",
-  "sex_code": null,
-  "birth_date": "19900919",
-  "spell_name": "sihongtao",
-  "nation_name": null,
-  "contact_name": "施鸿畴",
-  "home_address": null,
-  "native_place": null,
-  "patient_name": "施鸿畴",
-  "source_patid": "1235790",
-  "contact_phone": null,
-  "profession_code": null,
-  "medicare_card_no": "YB66354511235790",
-  "temporary_card_no": "2021"
+  "property": [
+    {
+      "code": "isActive",
+      "uri": "http://mdm.sy",
+      "referenceCodeSystem": "mdm.sy",
+      "type": "boolean",
+      "description": "是否启用",
+      "rowNo": 0,
+      "id": "51b45c58-22b4-4d35-b915-570ea7581f65",
+      "extension": [
+        {
+          "url": "nullable",
+          "value": true
+        },
+        {
+          "url": "searchable",
+          "value": true
+        },
+        {
+          "url": "defaultValue",
+          "value": "true"
+        }
+      ]
+    }
+  ]
 }

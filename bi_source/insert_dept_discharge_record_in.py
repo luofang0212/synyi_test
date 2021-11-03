@@ -5,15 +5,16 @@ from util.dbClickhouse_util import ClickHouseDb
 from util.dbPlsql_util_bi import PlSqlDbBI
 from util.dbPlsql_util_system import PlSqlDb
 import random
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 from datetime import datetime,timedelta
+from util.time_utc import *
 
 '''入院记录主题	 topic=150 '''
 
 mysql_bi = PlSqlDbBI()
 sql_1 = '''select max(visit_id) from source.discharge_record_in;'''
 res_1 = mysql_bi.query(sql_1)
-print(res_1)
+# print(res_1)
 
 max_visit_id = res_1[0][0] + 1
 
@@ -24,7 +25,6 @@ sql_2 = '''select dept_id,dept_name,normalized_dept_name,normalized_dept_id,sour
 from system.normalized_department;
 '''
 res_2 = mysql_2.query(sql_2)
-
 print(len(res_2))
 # print(res_2)
 
@@ -58,15 +58,15 @@ for i in range(1, 1208):
     # real_time = now_time + offset
 
     # 指定日期 转换
-    data = random.randint(6, 7)
-    get_time = '2021-09-{0} 08:00:00.000000'.format(data)
+    data = random.randint(8, 9)
+    get_time = '2021-10-{0} 08:00:00.000000'.format(data)
     now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
 
     hours_data = round(random.uniform(-2, 14), 2)
     offset = timedelta(hours=hours_data)
     real_time = now_time + offset
 
-    update_time = real_time
+    update_time = local_to_utc(real_time)
 
     sql_3 = '''
     INSERT INTO source.discharge_record_in (visit_id, org_code, source_app, source_visit_id, source_patient_id, patient_id,

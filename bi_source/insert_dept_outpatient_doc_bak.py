@@ -7,7 +7,7 @@ from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 import time
 from datetime import timedelta,datetime
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 
 # 医师出诊表 topic=xxx
 mysql1 = PlSqlDbBI()

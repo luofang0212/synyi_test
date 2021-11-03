@@ -6,7 +6,7 @@ from util.dbPlsql_util_system import PlSqlDb as PlSqlDb2
 from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 from datetime import datetime,timedelta
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 
 mysql1 = PlSqlDbBI()
 sql_1 = '''select max(case_id) from source.case_base;'''

@@ -12,9 +12,14 @@ from empi.dbPlsql_util_system import PLSqlSystem
 from empi.get_data import GetData
 from util.get_idnum import GetID
 
+system_sql = PLSqlSystem()
+sql_1 = "select max(euid) from public.patient"
+euid_data = system_sql.query(sql_1)
+euid = euid_data[0][0]
+euid = re.sub(r"EH00",'',euid)
 
+euid_id = int(euid)
 def regist():
-    system_sql = PLSqlSystem()
 
     n = random.randint(0, 12)
     sur = GetData.sur_name[n]
@@ -67,8 +72,9 @@ def regist():
     info = text_1 + text_2 + '}'
     # print(info.strip())
     # 生成euid
-
-    euid = 'EHX0' + str(random.randint(100000,999999))
+    global euid_id
+    euid_id = euid_id + 1
+    euid = 'EH00' + str(euid_id)
     # print(euid)
 
     uid_name = 'taskid'
@@ -89,6 +95,6 @@ def regist():
 
 
 if __name__ == '__main__':
-    for x in range(50):
+    for x in range(1):
         regist()
         print(x)

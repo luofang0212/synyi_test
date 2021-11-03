@@ -6,7 +6,7 @@ from util.dbPlsql_util_system import PlSqlDb
 from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 from datetime import datetime,timedelta
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 
 # 出入转主题 topic_code='5
 
@@ -29,7 +29,7 @@ res_2 = mysql.query(sql_2)
 # normalized_dept_id  = res_2[3][3]
 # source_app = res_2[3][4]
 print(len(res_2))
-print(res_2)
+# print(res_2)
 
 
 for i in range(1, 1209):
@@ -61,11 +61,12 @@ for i in range(1, 1209):
     # get_time = '2021-08-10 00:00:00.000000'
     # now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
 
-    # 时间统一用
-    now_time = datetime.now()
-    # 根据当前时间 去计算便宜时间，随机生成时间
-    # hours_data = random.randint(-10,14)
-    hours_data = round(random.uniform(-10, 14), 2)
+    # 指定日期 转换
+    data = random.randint(1, 15)
+    get_time = '2021-10-{0} 08:00:00.000000'.format(data)
+    now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
+
+    hours_data = round(random.uniform(-2, 14), 2)
     offset = timedelta(hours=hours_data)
     real_time = now_time + offset
 

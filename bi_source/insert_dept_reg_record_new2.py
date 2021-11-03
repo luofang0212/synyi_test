@@ -6,7 +6,7 @@ from util.dbPlsql_util_system import PlSqlDb
 from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 import time
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 from datetime import datetime, timedelta
 from util.time_utc import *
 
@@ -27,8 +27,9 @@ from system.normalized_department;
 res_2 = mysql.query(sql_2)
 
 print(len(res_2))
+print(res_2)
 
-for i in range(1, 400):
+for i in range(1, 500):
     max_visit_id = max_visit_id + 1
     res_2 = mysql.query(sql_2)
     dept_id = res_2[i][0]
@@ -40,16 +41,16 @@ for i in range(1, 400):
     pay_kind_code = random.choice([1, 2, 3, 4, 5, 6, 7, 8])
     visit_type_code = random.choice(['I', 'O', 'E', 'P'])
 
-    clinic_level_data = {1:'外院西医普诊',2:'西医普诊',3:'中医普诊',4:'中医专诊',5:'内院中医专诊'}
-    clinic_level_code = random.choice([1, 2, 3, 4, 5])
-    clinic_level_name = clinic_level_data[clinic_level_code]
-
+    clinic_level = random.choice([1, 2, 3, 4, 5])
+    if clinic_level == 1:
+        clinic_level_name = "外院西医普诊"
+    else:
+        clinic_level_name = "西医普诊"
 
     major_diag_name = random.choice(["健康查体", "疑似新冠"])
 
-    age_group_code = random.choice(['18-40', '0-7', '>65', '41-65', '7-18'])
-    # age_group_code = random.choice(['18-41', '0-7', '>65', '41-65'])
-    age_group_data = {'0-7': '0岁-7岁', '7-18': '7岁-18岁', '18-40': '18岁-41岁', '41-65': '41岁-65岁', '>65': '>65岁'}
+    age_group_code = random.choice(['18-41', '0-7', '>65', '41-65', '7-18'])
+    age_group_data = {'0-7': '0岁-7岁', '7-18': '7岁-18岁', '18-41': '18岁-41岁', '41-65': '41岁-65岁', '>65': '>65岁'}
     age_group_name = age_group_data[age_group_code]
 
     sur_name = random.choice(getattr(GetData, 'sur_name'))
@@ -79,32 +80,24 @@ for i in range(1, 400):
     book_way_name = book_way_data[book_way_code][1]
 
     # 指定日期 转换
-    data = random.randint(6, 7)
-    get_time = '2021-09-{0} 08:00:00.000000'.format(data)
+    data = random.randint(26, 26)
+    get_time = '2021-10-{0} 18:25:01.000000'.format(data)
     now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
+    real_time = now_time
 
+    get_time_2 = '2021-10-{0} 17:40:01.000000'.format(data)
+    now_time_2 = datetime.strptime(get_time_2, '%Y-%m-%d %H:%M:%S.%f')
 
-    # now_time = datetime.now()
-    # 根据当前时间 去计算偏移时间，随机生成时间
-    # hours_data = random.randint(-10,14)
-    hours_data = round(random.uniform(-2, 14), 2)
-    offset = timedelta(hours=hours_data)
-    real_time = now_time + offset
+    get_time_3 = '2021-10-{0} 18:40:01.000000'.format(data)
+    now_time_3 = datetime.strptime(get_time_3, '%Y-%m-%d %H:%M:%S.%f')
 
-    call_time = local_to_utc(real_time)
-    call_time_bak = real_time
+    call_time = local_to_utc(now_time)
 
-    hours_data_2 = round(random.uniform(0, 0.15), 2)
-    offset_2 = timedelta(hours=hours_data_2)
+    arrive_time = local_to_utc(now_time_2)
 
-    hours_data_3 = round(random.uniform(0, 0.2), 2)
-    offset_3 = timedelta(hours=hours_data_3)
+    end_time = local_to_utc(now_time_3)
 
-    arrive_time = local_to_utc(call_time_bak - offset_3)
-
-    end_time = local_to_utc(call_time_bak + offset_2)
-
-    compare_time = '2021-09-{0} 12:00:00.000000'.format(data)
+    compare_time = '2021-10-{0} 12:00:00.000000'.format(data)
     compare_time_new = datetime.strptime(compare_time, '%Y-%m-%d %H:%M:%S.%f')
 
     # print(now_time, real_time, compare_time_new)
@@ -117,7 +110,8 @@ for i in range(1, 400):
                       "1004": ['诊室四', '7016', '朱运凯'],
                       "1005": ['诊室五', '7006', '吕轩'], "1006": ['诊室六', '7019', '李浩宕'], "1007": ['诊室七', '8019', '晨小小']}
 
-    visit_room_code = random.choice(["1001", "1002", "1003", "1004", "1005", "1006"])
+    visit_room_code = random.choice(["1001", "1002", "1003", "1004", "1005", "1006","1007"])
+    # visit_room_code = random.choice(["1007"])
     visit_room_name = visit_data[visit_room_code][0]
     doc_code = visit_data[visit_room_code][1]
     doc_name = visit_data[visit_room_code][2]
@@ -147,7 +141,7 @@ values ({0}, '46919134-2', '{1}', '20880|20190618', 03110588, '{14}', 24, '女�
         4603, '医保', '***', '中国', '香港特别行政区', null, null, null, null, {11}, '{12}', null, null, null, '上午',
         '{8}', 4619, '普通号', 4619, '{15}', 0, '门诊', '{17}', 103, '内科门诊', {2}, '{3}', {18}, '{19}',
         4548, '副主任医师', {21}, '{23}', 1, null, 10.0000, 10.0000, {4}, '{16}', 0, 0, 0, null,
-        null, null, null, 0.0000, null, null, 2107, '自助001', 221, '门诊收费处', null, 2, 10, {6}, null, '{13}', null, 13, {29}, 551,
+        null, null, null, 0.0000, null, null, 2107, '自助001', 221, '门诊收费处', null, 2, 10, {6}, null, '{13}', null, 13, 3, 551,
         '{7}', null, 0307, '{18}', 212, {22}, 9121, 01030002, 96217, '{9}', '{10}', null, '门诊医生|0307', '内科门诊', null, null,
         10.0000, 300337122, 25, '消化科', null, null, null, null, null, null, null, null, null, null, null, null, 0, '普通',
         '{8}', {20}, '{16}', '{26}', '{27}', '{28}', '{24}', '{25}');
@@ -155,6 +149,6 @@ values ({0}, '46919134-2', '{1}', '20880|20190618', 03110588, '{14}', 24, '女�
                    visit_type_code, call_time, age_group_code, age_group_name, book_way_id, book_way_name,
                    book_way_code, patient_name, clinic_level_name, arrive_time, major_diag_name, doc_code, doc_name,
                    book_flag, visit_state_id, visit_state_code, visit_state_name, visit_room_code, visit_room_name,
-                   end_time, visit_ward_code, visit_ward_name,clinic_level_code)
+                   end_time, visit_ward_code, visit_ward_name)
     mysql1.insert(sql_3)
     print(i)

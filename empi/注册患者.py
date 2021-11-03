@@ -8,35 +8,23 @@ import requests
 
 
 def empi_register():
-    token = "Bearer 0D4169F5752F89844B7FBDE7C2C54C10B5166567DC459CBC98F291E6D5D456DE"
-    http_rq = HttpRequest()
-    # 患者标识符接口
-    identifierdomains = 3
-    identifierdomains_url = "http://frontend-469-test.synyi.sy/api/empi/identifierdomains/3"
+    req = HttpRequest()
     headers = {
-        "Authorization": token
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36",
+        "Authorization": "Bearer C99D66ED9E8EDCCB98134689170075EF391065513F7833B52D079A923A006DFD"
     }
-    response = http_rq.http_request('get', identifierdomains_url, headers=headers)
 
-    info = response.json()
-    print(info)
-    code = info['identifierCode']
-    identifier = '38288' + str(random.randint(10000, 300000))
-    print(code)
-    time.sleep(0.5)
+    # biao_url = "http://frontend-469-test.synyi.sy/api/empi/identifierdomains/12"
+    # biao_response = req.http_request('get',biao_url,headers=headers)
+    # print(biao_response.json())
+    ids =[{"code": "1.13", "identifier": "1232334"}]
 
-    patient_url = "http://frontend-469-test.synyi.sy/api/empi/patient"
-    patient_data = {"source_patid": "122223", "patient_name": "2212", "birth_date": "12", "id_no": "2",
-                    "spell_name": "2", "contact_name": "22", "nation_name": "322", "home_address": "2",
-                    "temporary_card_no": "2", "medicare_card_no": "123222", "sex_code": "2", "phone": "2",
-                    "profession_code": "12", "native_place": "133332332", "contact_phone": ["232"],
-                    "ids": [{"code": code, "identifier": identifier}]}
-
-    headers = {
-        "Authorization": token
-    }
-    response_2 = http_rq.http_request('post', patient_url, data=patient_data, headers=headers)
-    print(response_2.json())
+    register_url = "http://frontend-469-test.synyi.sy/api/empi/patient"
+    register_data = {"source_patid":"pid75494","patient_name":"陈成和","birth_date":"20020728","id_no":"45644620200317685X","spell_name":"chenchenghe","contact_name":"陈成和","nation_name":"瑶族","home_address":"上海某地方","temporary_card_no":"2","medicare_card_no":"1","sex_code":"1","phone":"13122885956","profession_code":"10002","native_place":"湖南","ids":[{'code': '1.13', 'identifier': '53178'}]}
+    # print(register_data)
+    print(register_data)
+    register_response = req.http_request('post',register_url,register_data,headers=headers)
+    print(register_response.text)
 
 
 if __name__ == '__main__':

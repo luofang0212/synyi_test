@@ -4,7 +4,7 @@
 from util.dbClickhouse_util import ClickHouseDb
 from util.dbPlsql_util_system import PlSqlDb
 from util.dbPlsql_util_bi import PlSqlDbBI
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 import random
 from datetime import datetime,timedelta
 

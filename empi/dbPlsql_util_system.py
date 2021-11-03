@@ -9,7 +9,7 @@ class PLSqlSystem:
     def __init__(self):
 
         # 连接数据库
-        # self.conn = psycopg2.connect(database="mar_test", user="postgres", password="postgres", host="172.16.129.172",port="5432")
+        # self.conn = psycopg2.connect(database="empi_test", user="postgres", password="postgres", host="172.16.129.172",port="5432")
 
         # # 连接数据库
         # self.conn = psycopg2.connect(database="empiv4_test", user="luofang",password="p$mKDqBPVc5d", host="172.16.0.20",port="5432")

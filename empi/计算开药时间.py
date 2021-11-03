@@ -4,17 +4,17 @@
 from datetime import datetime, timedelta
 
 # 指定日期 转换
-get_time = '2021-08-29'
+get_time = '2021-08-03'
 now_time = datetime.strptime(get_time,'%Y-%m-%d')
 
 # 用药天数
-days_1 = 34
-offset_1 = timedelta(days=days_1)
+days_1 = 97
+offset_1 = timedelta(days=days_1-1)
 real_time = now_time + offset_1
 
 # 可提前开药天数
 days_2 = -4
-offset_2 = timedelta(days=days_2)
+offset_2 = timedelta(days=days_2+1)
 ke_time = real_time + offset_2
 
 system_time_1 = datetime.now()

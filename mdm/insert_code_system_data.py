@@ -64,5 +64,5 @@ def insert_data():
     print("插入成功")
 
 if __name__ == '__main__':
-    for x in range(1,5000):
+    for x in range(1,3):
          insert_data()

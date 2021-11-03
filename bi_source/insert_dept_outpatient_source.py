@@ -7,7 +7,7 @@ from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 import time
 from datetime import datetime,timedelta
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 from util.time_utc import *
 
 # 门诊号源 topic=xxx
@@ -61,8 +61,8 @@ for i in range(1, 400):
 
 
     # 指定日期 转换
-    data = random.randint(2, 2)
-    get_time = '2021-09-0{0} 10:00:00.000000'.format(data)
+    data = random.randint(26, 26)
+    get_time = '2021-10-{0} 10:00:00.000000'.format(data)
     now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
 
     # 时间统一用
@@ -79,7 +79,7 @@ for i in range(1, 400):
     # time_scope_code = int(random.choice([0, 1]))
     # time_scope_name = time_scope_data[time_scope_code]
 
-    compare_time = '2021-09-0{0} 12:00:00.000000'.format(data)
+    compare_time = '2021-10-{0} 12:00:00.000000'.format(data)
     compare_time_new = datetime.strptime(compare_time, '%Y-%m-%d %H:%M:%S.%f')
 
     # print(now_time, real_time, compare_time_new)

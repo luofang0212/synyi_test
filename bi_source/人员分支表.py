@@ -6,7 +6,7 @@ from util.dbPlsql_util_bi import PlSqlDbBI
 from util.dbPlsql_util_system import PlSqlDb
 import random
 from datetime import datetime, timedelta
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 
 mysql_bi = PlSqlDbBI()
 sql_1 = '''select max(id),max(stat_date_id) from source.std_dws_emp_distribution_month;'''

@@ -36,12 +36,12 @@ class GetID():
         final_data = final_num + final_text
 
         m = random.randint(0, len(province_id_data) - 1)
-        print(m,len(province_id_data))
+        # print(m,len(province_id_data))
         province_id = province_id_data[m]
 
         id_num = str(province_id) + str(middle_num) + get_birthday + final_data
 
-        print(id_num)
+        # print(id_num)
         return id_num
 
     def get_birthdata(self):

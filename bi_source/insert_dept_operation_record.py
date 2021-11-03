@@ -6,7 +6,7 @@ from util.dbPlsql_util_system import PlSqlDb
 from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 from datetime import datetime,timedelta
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 
 ''' 手麻主题 topic=8 '''
 

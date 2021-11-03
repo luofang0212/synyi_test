@@ -7,7 +7,7 @@ from util.dbPlsql_util_bi import PlSqlDbBI
 import random
 import time
 from datetime import timedelta, datetime
-from update_source.get_data import GetData
+from bi_source.get_data import GetData
 from util.time_utc import *
 
 # 医师出诊表 topic=xxx
@@ -42,8 +42,8 @@ for i in range(1, 14):
     clinic_ward_name = clinic_ward_data[clinic_ward_id]
 
     # 指定日期 转换
-    data = random.randint(2, 2)
-    get_time = '2021-09-0{0} 08:00:00.000000'.format(data)
+    data = random.randint(26, 26)
+    get_time = '2021-10-{0} 13:00:00.000000'.format(data)
     # get_time = '2021-08-{0} 16:00:00.000000'.format(data)
     now_time = datetime.strptime(get_time, '%Y-%m-%d %H:%M:%S.%f')
 
@@ -61,7 +61,7 @@ for i in range(1, 14):
 
     update_time = local_to_utc(real_time)
 
-    compare_time = '2021-09-0{0} 12:00:00.000000'.format(data)
+    compare_time = '2021-10-{0} 12:00:00.000000'.format(data)
     compare_time_new = datetime.strptime(compare_time, '%Y-%m-%d %H:%M:%S.%f')
 
     # print(now_time, real_time, compare_time_new)
@@ -89,7 +89,7 @@ for i in range(1, 14):
         time_scope_data = [1, '下午', ' 13:00:00', ' 13:05:00', ' 16:30:00']
 
     # clinic_room_code = random.choice(["1001", "1002", "1003", "1004", "1005", "1006"])
-    clinic_room_code = str(1006)
+    clinic_room_code = str(1007)
     clinic_room_name = visit_data[clinic_room_code][0]
     doc_code = visit_data[clinic_room_code][1]
     doc_name = visit_data[clinic_room_code][2]

@@ -41,7 +41,7 @@ def regist():
       "temporary_card_no": null
     }
     '''
-    euid = 'EHT0910117'
+    euid = 'EH20910119'
     # euid = 'EHT0' + str(random.randint(100000, 999999))
     uid_name = 'taskid'
     namespace = uuid.uuid1()
